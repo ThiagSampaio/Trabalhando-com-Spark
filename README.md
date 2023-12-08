@@ -10,6 +10,9 @@ Primeiro iremos entrar com uma base teórica, depois vamos para implementação 
 - [Arquiteturas de Processamento de Dados em Larga Escala](#Arquiteturas-de-Processamento-de-Dados-em-Larga-Escala)
 - [Introdução ao Apache Spark](#Introdução-ao-Apache-Spark)
 - [DataBricks](#DataBricks)
+- [Fazendo Upload do Dataset no DataBricks](#Fazendo-Upload-do-Dataset-no-DataBricks)
+- [Formato Parquet](#Formato-Parquet)
+- [Convertendo arquivos CSV para Parquet com Spark](#Convertendo-arquivos-CSV-para-Parquet-com-Spark)
 
 
 ## Processamento em Batch
@@ -161,7 +164,7 @@ Crie uma pasta no workspace:
 
 ![Cluster DataBricks](prints/4.png)
 
-Coloque o arquivo Scripts_1 nesta pasta.
+Coloque o arquivo Scripts_1 nesta pasta(arquivo na pasta files do repositório).
 
 Já voltaremos a essa prática, porém é necessário o entendimento de alguns conceitos:
 
@@ -223,6 +226,75 @@ A zona de consumo é a área onde os dados refinados são disponibilizados para 
 ##### 5. Backup Zone (Zona de Backup):
 
 A zona de backup é reservada para cópias de segurança ou réplicas de dados críticos presentes em outras zonas. Essa área ajuda a garantir a recuperação de dados em caso de falhas ou perdas.
+
+## Fazendo Upload do Dataset no DataBricks.
+
+Como foi descrito acima das zonas de dataLakes, elas nada mais são que repositórios especificos dentro do cloud.
+
+Faça o Download dos arquivos no primeiro link do notebook. Iremos fazer o upload apenas dos arquivos com a nomeclatura `T2.....`
+
+Na aba lateral clique em `Data`.
+
+Após clique em `Create Table`.
+
+De o nome do diretório de `RawData`(não se esqueça de criar esse diretório).
+
+Faça o upload de cada tabela individual
+
+![Upload de arquivos](prints/5.png)
+
+Siga os passos do notebook até `df.count()`
+
+
+## Formato Parquet
+
+O Parquet é um formato de armazenamento de dados colunar de código aberto que foi projetado para ser eficiente em termos de leitura, compacto e compatível com uma variedade de frameworks de processamento de dados, incluindo Apache Spark, Apache Hive, Apache Impala e muitos outros. Aqui estão algumas características-chave do formato de dados Parquet:
+
+### 1. Colunar:
+
+O Parquet armazena dados de maneira colunar, o que significa que os valores de uma coluna específica são armazenados juntos, em oposição ao armazenamento por linhas. Isso melhora significativamente a eficiência em operações de leitura que envolvem a seleção de um subconjunto de colunas.
+
+### 2. Compacto:
+
+O formato Parquet é altamente compacto, pois utiliza técnicas como compressão de dados e codificação de dicionário para reduzir o tamanho dos arquivos. Isso resulta em economia de espaço em disco e menor uso de largura de banda durante a transferência de dados.
+
+### 3. Esquema Evolutivo:
+
+O Parquet suporta um modelo de esquema evolutivo, o que significa que você pode adicionar, remover ou modificar colunas sem afetar a compatibilidade com versões anteriores dos dados. Isso é crucial para a evolução contínua dos dados ao longo do tempo.
+
+### 4. Suporte a Tipos Complexos:
+
+Além de tipos simples como inteiros e strings, o Parquet suporta tipos de dados complexos, como listas, mapas e estruturas aninhadas. Isso permite a representação eficiente de estruturas de dados complexas.
+
+### 5. Particionamento e Filtragem Eficientes:
+
+Como os dados são armazenados colunarmente, o Parquet facilita operações de particionamento e filtragem, onde apenas os blocos de dados relevantes para a consulta são lidos, resultando em operações mais eficientes.
+
+### 6. Suporte a Várias Plataformas:
+
+O formato Parquet é suportado por uma variedade de ecossistemas e frameworks, tornando-o uma escolha versátil para armazenamento e processamento de dados em ambientes distribuídos.
+
+### 7. Suporte a Várias Plataformas:
+
+Os dados no formato Parquet são frequentemente comprimidos, usando algoritmos como Snappy, Gzip ou outros, para reduzir o espaço de armazenamento e acelerar a transferência de dados.
+
+### 8. Porque usar Parquet e não csv:
+
+A imagem abaixo uma comparação entre o uso do PARQUET e CSV na Amazon. Olhe a diferença absurda:
+
+![Upload de arquivos](prints/6.png)
+
+Em resumo, o formato Parquet é uma escolha eficiente para armazenar grandes volumes de dados em ambientes de big data. Seu design colunar, compactação eficiente e suporte a esquemas evolutivos o tornam uma opção popular em ecossistemas como o Apache Spark e o Hive.
+
+
+## Convertendo arquivos CSV para Parquet com Spark
+
+Siga os passos do notebook (lembre de criar um diretório chamado `processing`)
+
+Siga até o final do notebook. 
+
+Note a diferença do tempo de processamento e o tamanho dos arquivos.
+
 
 
 
