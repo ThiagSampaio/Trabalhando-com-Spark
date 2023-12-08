@@ -17,10 +17,10 @@ O processamento em Batch envolve a execução de operações em um conjunto fixo
 Suponha que esteja analisando dados de vendas de uma loja online. Com o processamento em batch, poderíamos executar análises diárias ou semanais, processando todas as transações acumuladas nesse período. Isso é útil para relatórios periódiocos, geração de insights hitóricos e otimização de recusos.
 
 ### Características Principais:
-<li>
-<ul><br>Eficiência:</br> Adequado para grandes volumes de dados que podem ser processados de uma vez.</ul>
-<ul><br>Planejamento:</br> As operações são programadas para serem executadas em intervalos específicos.</ul>
-</li>
+
+- **Eficiência:** Adequado para grandes volumes de dados que podem ser processados de uma vez
+
+- **Planejamento:** As operações são programadas para serem executadas em intervalos específicos.
 
 ### Conclusão
 
