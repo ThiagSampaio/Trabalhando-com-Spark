@@ -8,6 +8,8 @@ Primeiro iremos entrar com uma base teórica, depois vamos para implementação 
 - [Processamento em Batch](#Processamento-em-Batch)
 - [Processamento em Streaming](#Processamento-em-Streaming)
 - [Arquiteturas de Processamento de Dados em Larga Escala](#Arquiteturas-de-Processamento-de-Dados-em-Larga-Escala)
+- [Introdução ao Apache Spark](#Introdução-ao-Apache-Spark)
+- [DataBricks](#DataBricks)
 
 
 ## Processamento em Batch
@@ -113,6 +115,48 @@ A arquitetura Lambda foi proposta para lidar com as limitações encontradas em 
 #### Conclusão:
 
 A escolha entre arquitetura Lambda e Kappa dependerá das necessidades específicas do projeto, priorizando fatores como latência, consistência, complexidade e tipo de análise de dados realizada.
+
+
+## Introdução ao Apache Spark.
+
+O Apache Spark é um poderoso framework open source para processamento de dados distribuído e escalável. Projetado para oferecer alto desempenho e facilidade de uso, o Spark é amplamente utilizado em diversas aplicações de processamento de dados em larga escala. Aqui estão algumas características e conceitos-chave relacionados ao Apache Spark:
+
+- **Processamento em Memória:** O Spark é conhecido por seu modelo de processamento em memória, que permite armazenar dados na RAM, proporcionando um processamento significativamente mais rápido em comparação com sistemas que dependem principalmente de disco.
+
+- **APIs Abertas:** Oferece APIs em várias linguagens, incluindo Scala, Java, Python e R, o que facilita a integração com diferentes ecossistemas e permite que os desenvolvedores escolham a linguagem de programação de sua preferência.
+
+- **Resiliente e Tolerante a Falhas:** O Spark é projetado para ser tolerante a falhas e resiliente. Se ocorrerem falhas em um nó, o Spark pode recuperar os dados perdidos automaticamente, garantindo a continuidade do processamento.
+
+- **DAG (Directed Acyclic Graph):** O Spark executa operações em um grafo acíclico direcionado (DAG), permitindo a otimização das operações. As transformações são planejadas e otimizadas antes da execução real.
+
+- **Módulos e Bibliotecas:** Além do processamento de dados em lote (Batch Processing), o Spark oferece módulos para processamento de stream em tempo real (Structured Streaming), aprendizado de máquina (MLlib), processamento de gráficos (GraphX) e consultas SQL (Spark SQL).
+
+- **Suporte a Diversas Fontes de Dados:** O Spark suporta várias fontes de dados, incluindo Hadoop Distributed File System (HDFS), Apache Cassandra, Apache HBase, Amazon S3, entre outras, tornando-o flexível para integração com diversos sistemas de armazenamento.
+
+- **Cluster Manager:** Pode ser executado em diversos gerenciadores de cluster, como Apache Mesos, Hadoop YARN e o gerenciador de cluster próprio chamado Spark Standalone.
+
+
+## DataBricks.
+
+Databricks é uma plataforma de análise de dados baseada em nuvem, centrada no suporte ao Apache Spark. Oferece um ambiente colaborativo de notebook interativo para cientistas de dados e engenheiros trabalharem juntos. Além do processamento em lote, suporta processamento de stream em tempo real. Integra-se a ecossistemas de dados, como Delta Lake e serviços de nuvem. Fornece automação, segurança avançada, escalabilidade na nuvem e recursos integrados de machine learning. É agnóstico de nuvem, oferecendo suporte a AWS, Azure e Google Cloud. Databricks é amplamente utilizado para análise de dados e desenvolvimento de big data na nuvem.
+
+### Criando uma conta no DataBricks.
+
+Crie uma conta no dataBricks utilizando a opção community cloud. 
+
+### Criando cluster no DataBricks
+
+Crie um cluster na plataforma, acessando na barra lateral a opção `+` logo em seguida `Cluster` como no print:
+
+![Cluster DataBricks](prints/3.png)
+
+Compute name: `cluster_spark_1`
+Databricks runtime version: `Runtime: 13.1 ML`
+
+Clique em create cluste e aguarde alguns minutos.
+
+
+
 
 
 
