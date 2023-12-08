@@ -155,9 +155,74 @@ Databricks runtime version: `Runtime: 13.1 ML`
 
 Clique em create cluste e aguarde alguns minutos.
 
+### Criando pastas e fazendo upload de um notebook
 
+Crie uma pasta no workspace:
 
+![Cluster DataBricks](prints/4.png)
 
+Coloque o arquivo Scripts_1 nesta pasta.
+
+Já voltaremos a essa prática, porém é necessário o entendimento de alguns conceitos:
+
+### Dataframes no Apache Spark:
+
+#### O que são:
+
+DataFrames são estruturas de dados tabulares distribuídas no Apache Spark. Eles são semelhantes a tabelas em um banco de dados relacional ou a DataFrames em linguagens como o pandas em Python.
+
+#### Características:
+
+Os DataFrames no Spark são imutáveis e são construídos a partir de RDDs (Resilient Distributed Datasets). Eles oferecem uma API rica e expressiva para consultas e transformações de dados.
+
+#### Operações:
+
+Permitem realizar operações como filtros, projeções, junções e agregações em larga escala. As operações em DataFrames são otimizadas pelo Spark Catalyst Optimizer, que planeja e executa consultas de forma eficiente.
+
+#### Linguagens de Programação:
+
+Pode ser utilizado por meio de APIs em linguagens como Scala, Java, Python e R.
+
+### Partições no Apache Spark:
+
+#### O que são:
+
+Partições referem-se à divisão lógica de um DataFrame ou RDD em partes menores. Cada partição contém uma porção dos dados distribuídos no cluster.
+
+#### Importância:
+
+Partições são essenciais para o processamento paralelo distribuído. Elas permitem que o Spark processe diferentes partes dos dados simultaneamente em diferentes nós do cluster, melhorando a escalabilidade e o desempenho.
+
+#### Número de Partições:
+
+O número de partições pode ser configurado e é crucial para otimizar o desempenho. Um número adequado de partições equilibra a carga entre os nós do cluster, evitando gargalos de processamento.
+
+#### Métodos de Controle:
+
+O desenvolvedor pode controlar o número de partições ao criar um DataFrame ou RDD, ou o Spark pode inferir automaticamente o número de partições com base no número de núcleos disponíveis no cluster.
+
+#### Boas Práticas para gestão de Data Lakes.
+
+Em um contexto de Data Lake, as "zonas" referem-se a áreas ou seções distintas dentro do armazenamento de dados, cada uma servindo a um propósito específico no gerenciamento e organização dos dados. Essas zonas são frequentemente usadas para impor políticas de governança, segurança e gerenciamento de dados em um ambiente de Data Lake. Vamos explorar algumas zonas comuns em um Data Lake:
+
+##### 1. Raw Zone (Zona Bruta):
+A zona bruta é a área onde os dados crus ou brutos são inicialmente armazenados sem muita transformação. Este é o local onde os dados recém-ingestados são depositados antes de passar por qualquer processo de transformação ou limpeza.
+
+##### 2. Staging Zone (Zona de Estágio):
+
+A zona de estágio é onde os dados crus da zona bruta são preparados para processamento adicional. Isso pode incluir tarefas como limpeza de dados, validação e conversão de formatos.
+
+##### 3. Curated (ou Refined) Zone (Zona Refinada):
+
+A zona refinada, os dados são transformados e refinados para atender a requisitos específicos de negócios. Pode incluir a aplicação de esquemas definidos, agregações e estruturação dos dados.
+
+##### 4. Consumption (ou Serving) Zone (Zona de Consumo):
+
+A zona de consumo é a área onde os dados refinados são disponibilizados para usuários finais, aplicações ou ferramentas de análise. É a camada final onde os dados são consumidos para insights, relatórios ou outras finalidades.
+
+##### 5. Backup Zone (Zona de Backup):
+
+A zona de backup é reservada para cópias de segurança ou réplicas de dados críticos presentes em outras zonas. Essa área ajuda a garantir a recuperação de dados em caso de falhas ou perdas.
 
 
 
