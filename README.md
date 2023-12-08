@@ -86,6 +86,34 @@ Essa arquitetura é especialmente útil em casos em que:
 
 A arquitetura Kappa, ao focar em processamento de eventos em tempo real e simplificar a infraestrutura, é adequada para casos de uso que demandam agilidade, baixa latência e capacidade de expansão em ambientes dinâmicos de dados.
 
+### Arquitetura Lambda
+
+A arquitetura Lambda foi proposta para lidar com as limitações encontradas em sistemas de processamento em tempo real, reconhecendo a importância de ter uma camada de processamento em lote para tarefas como ETL (extração, transformação e carga) e processamento histórico.
+
+#### Características Principais da Arquitetura Kappa
+
+- **Camadas Distintas:** Divide o processamento de dados em duas camadas principais: a camada de batch (em lote) e a camada de stream (em tempo real).
+
+- **Processamento em Lote::** Utiliza sistemas de processamento em lote para análises históricas e ETL, garantindo a consistência e confiabilidade dos dados.
+
+- **Processamento em Tempo Real:** Incorpora um sistema de processamento de stream para lidar com dados em tempo real, permitindo análises em tempo real e respostas a eventos instantâneas.
+
+#### Para que serve a Arquitetura Lambda.
+
+- **Necessidade de Análises Históricas::** Quando é necessário analisar grandes volumes de dados históricos.
+
+- **Garantia de Consistência::** Em cenários em que a consistência entre dados históricos e em tempo real é crítica.
+
+- **Suporte a ETL Complexo::** Para processar dados brutos e transformá-los em formatos mais úteis.
+
+#### Exemplo:
+
+![Arquitetura Lambda](prints/2.png)
+
+#### Conclusão:
+
+A escolha entre arquitetura Lambda e Kappa dependerá das necessidades específicas do projeto, priorizando fatores como latência, consistência, complexidade e tipo de análise de dados realizada.
+
 
 
 
