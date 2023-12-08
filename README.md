@@ -165,39 +165,39 @@ Coloque o arquivo Scripts_1 nesta pasta.
 
 Já voltaremos a essa prática, porém é necessário o entendimento de alguns conceitos:
 
-### Dataframes no Apache Spark:
+#### Dataframes no Apache Spark:
 
-#### O que são:
+##### O que são:
 
 DataFrames são estruturas de dados tabulares distribuídas no Apache Spark. Eles são semelhantes a tabelas em um banco de dados relacional ou a DataFrames em linguagens como o pandas em Python.
 
-#### Características:
+##### Características:
 
 Os DataFrames no Spark são imutáveis e são construídos a partir de RDDs (Resilient Distributed Datasets). Eles oferecem uma API rica e expressiva para consultas e transformações de dados.
 
-#### Operações:
+##### Operações:
 
 Permitem realizar operações como filtros, projeções, junções e agregações em larga escala. As operações em DataFrames são otimizadas pelo Spark Catalyst Optimizer, que planeja e executa consultas de forma eficiente.
 
-#### Linguagens de Programação:
+##### Linguagens de Programação:
 
 Pode ser utilizado por meio de APIs em linguagens como Scala, Java, Python e R.
 
-### Partições no Apache Spark:
+#### Partições no Apache Spark:
 
-#### O que são:
+##### O que são:
 
 Partições referem-se à divisão lógica de um DataFrame ou RDD em partes menores. Cada partição contém uma porção dos dados distribuídos no cluster.
 
-#### Importância:
+##### Importância:
 
 Partições são essenciais para o processamento paralelo distribuído. Elas permitem que o Spark processe diferentes partes dos dados simultaneamente em diferentes nós do cluster, melhorando a escalabilidade e o desempenho.
 
-#### Número de Partições:
+##### Número de Partições:
 
 O número de partições pode ser configurado e é crucial para otimizar o desempenho. Um número adequado de partições equilibra a carga entre os nós do cluster, evitando gargalos de processamento.
 
-#### Métodos de Controle:
+##### Métodos de Controle:
 
 O desenvolvedor pode controlar o número de partições ao criar um DataFrame ou RDD, ou o Spark pode inferir automaticamente o número de partições com base no número de núcleos disponíveis no cluster.
 
