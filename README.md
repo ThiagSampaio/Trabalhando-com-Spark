@@ -5,8 +5,8 @@ Primeiro iremos entrar com uma base teórica, depois vamos para implementação 
 
 ## Tabela de Conteúdo
 
-- [Processamento em Batch](#Processamento em Batch)
-- [Processamento em Streaming](#Processamento em Streaming)
+- [Processamento em Batch](#Processamento-em-Batch)
+- [Processamento em Streaming](#Processamento-em-Streaming)
 
 
 ## Processamento em Batch
