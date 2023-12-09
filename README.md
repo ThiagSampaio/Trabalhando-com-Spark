@@ -13,6 +13,10 @@ Primeiro iremos entrar com uma base teórica, depois vamos para implementação 
 - [Fazendo Upload do Dataset no DataBricks](#Fazendo-Upload-do-Dataset-no-DataBricks)
 - [Formato Parquet](#Formato-Parquet)
 - [Convertendo arquivos CSV para Parquet com Spark](#Convertendo-arquivos-CSV-para-Parquet-com-Spark)
+- [Arquitetura e modos de Deploy do Spark](#Arquitetura-e-modos-de-Deploy-do-Spark)
+- [Executando uma aplicação Spark](#Executando-uma-aplicacão-Spark)
+- [Criando um ambiente local](#Criando-um-ambiente-local)
+
 
 
 ## Processamento em Batch
@@ -294,6 +298,167 @@ Siga os passos do notebook (lembre de criar um diretório chamado `processing`)
 Siga até o final do notebook. 
 
 Note a diferença do tempo de processamento e o tamanho dos arquivos.
+
+
+## Arquitetura e modos de Deploy do Spark
+
+A arquitetura do Apache Spark é baseada no conceito de um cluster distribuído. Um cluster Spark consiste em um nó mestre (Master Node) e vários nós de trabalho (Worker Nodes). O nó mestre gerencia a distribuição de tarefas e monitora o progresso, enquanto os nós de trabalho executam as tarefas.
+
+### Componentes Principais:
+
+#### 1. Driver Program:
+
+É o programa principal que contém a lógica da aplicação Spark. Ele se comunica com o Cluster Manager para alocar recursos e distribuir tarefas.
+
+#### 2. Cluster Manager:
+
+Gerencia os recursos do cluster, alocando tarefas para os nós de trabalho. Pode ser o gerenciador integrado do Spark (chamado Standalone), Apache Mesos ou Apache Hadoop YARN.
+
+#### 3. Executor:
+
+São processos em execução em nós de trabalho que realizam as tarefas específicas da aplicação Spark. Cada aplicação tem seus próprios executores.
+
+#### 4. Contextos:
+
+Spark suporta vários contextos, como SparkContext para tarefas em lote, SQLContext para consultas SQL e StreamingContext para processamento em tempo real.
+
+#### 5. Figura resumo:
+
+![Arquitetura Spark](prints/7.png)
+
+### Modos de Deploy do Apache Spark:
+
+#### 1. Modo Local:
+
+Útil para desenvolvimento e teste em uma única máquina. O Spark é executado em um único processo e aproveita todos os núcleos disponíveis.
+
+#### 2. Modo Standalone:
+
+O Spark possui seu próprio gerenciador de cluster (standalone). Cada nó do cluster executa um processo mestre e executores Spark.
+
+#### 3. Modo Cluster:
+
+Pode ser integrado com gerenciadores de cluster externos, como Apache Mesos ou Hadoop YARN. Neste modo, o Spark utiliza os recursos do cluster para execução distribuída.
+
+#### 4. Modo Cliente e Modo Cluster:
+
+No modo Cliente, o driver é executado no ambiente do usuário que inicia o aplicativo, enquanto no modo Cluster, o driver é executado no ambiente do cluster.
+
+#### 5. Apache Hadoop YARN:
+
+O Spark pode ser implantado em um cluster Hadoop usando o YARN como gerenciador de recursos. Isso permite a coexistência com outros frameworks do ecossistema Hadoop.
+
+#### 6. Integração com Armazenamento em Nuvem:
+
+O Spark pode ser configurado para acessar e processar dados diretamente em armazenamentos em nuvem, como Amazon S3 ou Azure Data Lake Storage.
+
+
+## Executando uma aplicação Spark
+
+O spark-submit é um script do Apache Spark que facilita a submissão de aplicativos Spark para execução em um cluster. Ele é usado para enviar seu código Spark, escrito em Scala, Java, Python ou R, para execução em um ambiente distribuído. Aqui estão alguns conceitos-chave relacionados ao spark-submit:
+
+### 1. Objetivo:
+
+O spark-submit é utilizado para submeter aplicações Spark para execução em um cluster. Ele pode ser usado para executar tanto aplicativos Spark em lote quanto aplicativos Spark Streaming.
+
+### 2. Parâmetros Principais:
+
+- **Classe Principal (--class):** Especifica a classe principal do aplicativo Spark.
+- **Arquivo Jar (--jar):** Caminho para o arquivo JAR contendo o código do aplicativo.
+- **Modo de Execução (--deploy-mode):** Pode ser "client" (modo cliente) ou "cluster" (modo cluster).
+-**Número de Executores (--num-executors):** Define o número de executores a serem alocados no cluster.
+
+### 3. Modos de Execução:
+
+- **Modo Cliente (--deploy-mode client):** O driver é executado no ambiente do usuário que inicia o spark-submit.
+- **Modo Cluster (--deploy-mode cluster):** O driver é executado no ambiente do cluster.
+
+### 4. Modos de Execução:
+
+O spark-submit é compatível com vários gerenciadores de recursos, incluindo o gerenciador de cluster Standalone do Spark, Apache Mesos e Apache Hadoop YARN.
+
+
+### 5. Configurações Adicionais:
+
+É possível passar configurações adicionais para o Spark através do spark-submit, como configurações específicas do Spark (--conf), opções de execução (--executor-memory, --driver-memory), entre outras.
+
+### 6. Logs e Monitoramento:
+
+O spark-submit gera logs que são úteis para monitorar o progresso e diagnosticar problemas durante a execução do aplicativo.
+
+### 7. Boas práticas:
+
+O que é crítico em uma aplicação Spark?
+
+Vamos lembrar que o Spark é uma engine de processamento de dados. Ou seja, o spark nada mais é que uma entrada, processamento e saída.
+
+Podemos então separar em três tarefas basicas: Leitura , Processamento e Saída. 
+
+No primeiro passo, se lermos de uma fonte lenta é um problema pois ele utilizará o disco como cache. É ideal que o spark leia de um data lake com midia rábida como storage. 
+
+Além de ler de forma distribuida , ele escreve de forma distribuida, então devemos no atentar a forma de escrita do banco de dados. 
+
+
+## Criando um ambiente local
+
+Iremos fazer um ambiente on-premises para processamento de dados.
+
+![Tecnologias usada](prints/8.png)
+
+
+### 1- Instalando MiniO
+
+- Utilize o PoweSheel e execute os seguintes comandos:
+
+`PS> Invoke-WebRequest -Uri "https://dl.min.io/server/minio/release/windows-amd64/minio.exe" -OutFile "C:\minio.exe" `
+
+`setx MINIO_ROOT_USER admin`
+
+`setx MINIO_ROOT_PASSWORD password`
+
+- Vá ao cmd e vá até o diretório `C:`
+
+- Execute o camando abaixo:
+
+`.\minio.exe server C:\minio --console-address :9090`
+
+Acesse o endereço local: http://127.0.0.1:9090/
+
+Caso não tenha rodado , acesse o site: https://min.io/
+
+Veja a documentação: https://min.io/docs/minio/windows/index.html
+
+### 2 - Criando um Bucket
+
+Vamos criar nossa primeira zona do DataLake: A landing. Crie um Bucket chamado landing, processing, curated
+
+![Buckets](prints/9.png)
+
+### 3 - Subindo o arquivo para bucket
+
+Suba os arquivos da kaggle no bucket de landing. Clique no bucket e vá ate a pasta de arquivos. 
+
+![Arquivos- Buckets](prints/10.png)
+
+### 4 - Instalando o Spark o Spark Localmente
+
+Siga o passo a passo do vídeo no link abaixo: 
+https://www.youtube.com/watch?v=FIXanNPvBXM
+
+### 5 - Fazendo o Setup do Spark no Visual Studio
+
+Faça a configuração do seu Visual Studio para utilizar o spark. Indo em `File` - > `Preferences` -> `Setings` -> Pesquise por `env` -> selecione seu sistema operacional -> `"SPARK_HOME":"C:/BigDataLocalSetup/spark-3.5.0"`
+
+### 6 - Script
+
+Rode o script na pasta files com seguinte comando:
+
+`spark-submit --name job1-stack-app job-1-spark.py --verbose`
+
+Veja o spark fazendo todo trabalho.
+
+
+
 
 
 
